@@ -26,7 +26,7 @@ public class EurekaClientApplication {
     String port;
     
     @RequestMapping("/hi")
-    public String home(@RequestParam String name) {
+    public String home(@RequestParam(name="name") String name) {
         return "hi "+name+",i am from port:" +port;
     }
 }
