@@ -1,24 +1,35 @@
 package com.example.demo.controller;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dao.GenericDao;
+import com.example.demo.entity.Person;
 
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@RequestMapping("/db")
+@Slf4j
 public class ServiceInstanceRestController {
 
-//	@Autowired
-//	private DiscoveryClient discoveryClient;
-//
-//	public String serviceUrl() {
-//	    List<ServiceInstance> list = discoveryClient.getInstances("STORES");
-//	    if (list != null && list.size() > 0 ) {
-//	        return list.get(0).getUri().toString();
-//	    }
-//	    return null;
-//	}
+	@Lazy(true)
+	@Autowired
+	private GenericDao<Person, Long> basicDaoImpl;
+
+	@RequestMapping("/query")
+	@ResponseBody
+	public List<Person> home(@RequestParam(name = "name") String name) {
+		List<Person> personList = basicDaoImpl.find("from Person");
+		for (Person person : personList) {
+			log.info(person.getName() + person.getAge());
+		}
+		return personList;
+	}
 }
