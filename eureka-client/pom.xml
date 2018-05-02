@@ -63,10 +63,25 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.25</version>
 		</dependency>
+		<!-- lombok注解生成get/set方法 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.8</version>
+		</dependency>
+		<!-- 整合redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			</dependency>
+		<!-- redis客户端操作 -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
 		</dependency>
 	</dependencies>
 
