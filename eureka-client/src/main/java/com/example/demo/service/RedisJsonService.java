@@ -6,5 +6,5 @@ public interface RedisJsonService {
 
 	void setJsonString(String key, Object object);
 	
-	Object getJosnObject(String key, Type type);
+	<T> T getJosnObject(String key, Type type);
 }

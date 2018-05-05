@@ -1,5 +1,7 @@
 package com.example.demo.service.imp;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import javax.annotation.Resource;
 
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,9 +26,9 @@ public class RedisServiceImpl implements RedisService {
 	}
 
 	@Override
-	public Object get(String key) {
+	public <T> T get(String key) {
         ValueOperations<String,Object> vo = redisTemplate.opsForValue();
-        return vo.get(key);
+        return (T) vo.get(key);
 	}
 
 }

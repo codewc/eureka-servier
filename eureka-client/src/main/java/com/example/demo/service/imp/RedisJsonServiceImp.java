@@ -28,12 +28,11 @@ public class RedisJsonServiceImp implements RedisJsonService{
 		vo.set(key, jsonString);
 	}
 
-	@Override
-	public Object getJosnObject(String key,Type type) {
+	public <T> T getJosnObject(String key,Type type) {
 		ValueOperations<String,Object> vo = redisTemplate.opsForValue();
 		String jsonString = (String) vo.get(key);
 		Gson gson = new Gson();
-		Object obj = gson.fromJson(jsonString, type);
+		T obj = gson.fromJson(jsonString, type);
 		return obj;
 	}
 

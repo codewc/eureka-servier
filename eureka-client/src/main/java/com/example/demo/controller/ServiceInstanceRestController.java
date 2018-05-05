@@ -35,8 +35,7 @@ public class ServiceInstanceRestController {
 	@ResponseBody
 	public List<Person> home(@RequestParam(name = "name") String name) {
 		List<Person> person = new ArrayList<Person>();
-		@SuppressWarnings("unchecked")
-		List<Person> persons = (List<Person>) redisJsonServiceImp.getJosnObject(name, new TypeToken<List<Person>>(){}.getType());
+		List<Person> persons = redisJsonServiceImp.getJosnObject(name, new TypeToken<List<Person>>(){}.getType());
 		if(persons == null || persons.size() ==0 ) {
 			person = personService.find(name);
 			redisJsonServiceImp.setJsonString(name, person);
