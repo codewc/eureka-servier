@@ -15,6 +15,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Redis缓存配置类
+ */
 @EnableCaching
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
@@ -26,9 +29,10 @@ public class RedisConfig extends CachingConfigurerSupport {
         rcm.setDefaultExpiration(60);//秒
         return rcm;
     }
-    
+
     /**
      * RedisTemplate配置
+     *
      * @param factory
      * @return
      */
@@ -38,7 +42,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         //定义value的序列化方式
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
         ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL,  Visibility.ANY);
+        om.setVisibility(PropertyAccessor.ALL, Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
 
