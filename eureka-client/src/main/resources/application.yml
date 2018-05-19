@@ -4,6 +4,50 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 server:
   port: 9031
+  
 spring:
   application:
     name: eureka-client
+  datasource:
+    url: jdbc:mysql://localhost:3306/wangchun
+    username: root
+    password: 1q2w3e4r
+    driverClassName: com.mysql.jdbc.Driver
+    max-active: 20
+    max-idle: 8
+    min-idle: 8
+    initial-size: 10
+  jpa:
+    database: MYSQL
+    # Show or not log for each sql query
+    show-sql: true
+    # Hibernate ddl auto (create, create-drop, update)
+    hibernate:
+      ddl-auto: update
+      # Naming strategy
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      # stripped before adding them to the entity manager)
+    properties:
+      hibernate:
+        # stripped before adding them to the entity manager)
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        # 解决SessionFactory找不到
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+  redis:
+    database: 0
+    # Redis服务器地址
+    host: 192.168.72.131
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    # 连接池最大连接数（使用负值表示没有限制）
+    timeout: 0 # 连接超时时间（毫秒）
+    pool:
+      max-active: 8
+      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+      # 连接池中的最大空闲连接
+      max-idle: 8
+      # 连接池中的最小空闲连接
+      min-idle: 0
