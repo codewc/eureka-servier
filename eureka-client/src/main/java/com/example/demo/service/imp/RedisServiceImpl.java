@@ -1,7 +1,5 @@
 package com.example.demo.service.imp;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import javax.annotation.Resource;
 
 import org.springframework.data.redis.core.RedisTemplate;
