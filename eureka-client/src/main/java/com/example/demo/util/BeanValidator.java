@@ -12,8 +12,10 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import com.example.demo.exception.ParamVoidException;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
+import org.apache.commons.collections.MapUtils;
 
 public class BeanValidator {
 
@@ -32,6 +34,8 @@ public class BeanValidator {
 				errors.put(violation.getPropertyPath().toString(), violation.getMessage());
 			}
 			return errors;
+
+
 		}
 	}
 
@@ -54,6 +58,13 @@ public class BeanValidator {
 			return BeanValidator.validateObject(first, objects);
 		} else {
 			return BeanValidator.validate(first, new Class[0]);
+		}
+	}
+
+	public static void check(Object param) throws RuntimeException{
+		Map<String, String> map = BeanValidator.validateObject(param);
+		if(MapUtils.isNotEmpty(map)) {
+			throw new ParamVoidException(map.toString());
 		}
 	}
 }
